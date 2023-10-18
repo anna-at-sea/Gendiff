@@ -1,8 +1,8 @@
 install:
 	poetry install
 
-gendiff:
-	poetry run gendiff
+diff:
+	poetry run gendiff gendiff/json_files/file1.json gendiff/json_files/file2.json
 
 build:
 	poetry build
