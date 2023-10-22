@@ -2,7 +2,7 @@ install:
 	poetry install
 
 diff:
-	poetry run gendiff gendiff/json_files/file1.json gendiff/json_files/file2.json
+	poetry run gendiff gendiff/tests/fixtures/file1.json gendiff/tests/fixtures/file2.json
 
 build:
 	poetry build
@@ -15,3 +15,6 @@ package-install:
 
 lint:
 	poetry run flake8 gendiff
+
+test:
+	poetry run pytest

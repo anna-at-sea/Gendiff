@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 def main():
     print(generate_diff(args.first_file, args.second_file))
-    # gendiff/json_files/file1.json gendiff/json_files/file2.json
+    # gendiff/tests/fixtures/file1.json gendiff/tests/fixtures/file2.json
 
 
 if __name__ == '__main__':
