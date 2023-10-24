@@ -1,31 +1,31 @@
 from gendiff import generate_diff
+import pytest
 
 
 FILE1_JSON = 'gendiff/tests/fixtures/file1.json'
 FILE2_JSON = 'gendiff/tests/fixtures/file2.json'
 EMPTY_JSON = 'gendiff/tests/fixtures/empty_file.json'
+RESULT_FLAT = open('gendiff/tests/fixtures/file1_file2_diff.txt', 'r')
+RESULT_FLAT_SAME_FILE = open('gendiff/tests/fixtures/file1_file1_diff.txt', 'r')
+EMPTY_FIRST_RESULT = open('gendiff/tests/fixtures/empty_file1_diff.txt', 'r')
+EMPTY_SECOND_RESULT = open('gendiff/tests/fixtures/file1_empty_diff.txt', 'r')
+BOTH_EMPTY_RESULT = '{\n\n}'
 
 
-def test_gendiff_flat_json():
-    result = open('gendiff/tests/fixtures/file1_file2_diff.txt', 'r')
-    assert generate_diff(FILE1_JSON, FILE2_JSON) == result.read()
-    result.close()
+@pytest.mark.parametrize(
+    'input_1, input_2, expected',
+    [(FILE1_JSON, FILE2_JSON, RESULT_FLAT.read()),
+     (FILE1_JSON, FILE1_JSON, RESULT_FLAT_SAME_FILE.read()),
+     (EMPTY_JSON, FILE1_JSON, EMPTY_FIRST_RESULT.read()),
+     (FILE1_JSON, EMPTY_JSON, EMPTY_SECOND_RESULT.read()),
+     (EMPTY_JSON, EMPTY_JSON, BOTH_EMPTY_RESULT)
+     ]
+)
+def test_gendiff_flat_json(input_1, input_2, expected):
+    assert generate_diff(input_1, input_2) == expected
 
 
-def test_gendiff_flat_json_same_file():
-    result = open('gendiff/tests/fixtures/file1_file1_diff.txt', 'r')
-    assert generate_diff(FILE1_JSON, FILE1_JSON) == result.read()
-    result.close()
-
-
-def test_gendiff_flat_json_empty():
-    empty_first_result = open('gendiff/tests/fixtures/empty_file1_diff.txt',
-                              'r')
-    empty_second_result = open('gendiff/tests/fixtures/file1_empty_diff.txt',
-                               'r')
-    both_empty_result = '{\n\n}'
-    assert generate_diff(EMPTY_JSON, FILE1_JSON) == empty_first_result.read()
-    assert generate_diff(FILE1_JSON, EMPTY_JSON) == empty_second_result.read()
-    assert generate_diff(EMPTY_JSON, EMPTY_JSON) == both_empty_result
-    empty_first_result.close()
-    empty_second_result.close()
+RESULT_FLAT.close()
+RESULT_FLAT_SAME_FILE.close()
+EMPTY_FIRST_RESULT.close()
+EMPTY_SECOND_RESULT.close()
