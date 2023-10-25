@@ -1,4 +1,5 @@
 import json
+import yaml
 
 
 def to_string(data):
@@ -7,9 +8,14 @@ def to_string(data):
     return str(data)
 
 
-def generate_diff(file_1, file_2):
-    dict_1 = json.load(open(file_1))
-    dict_2 = json.load(open(file_2))
+def to_dict(file):
+    if str(file).endswith('json'):
+        return json.load(open(file))
+    elif str(file).endswith('yaml') or str(file).endswith('yml'):
+        return yaml.safe_load(open(file))
+
+
+def generate_diff(dict_1, dict_2):
     result = []
     all_keys = list(set(list(dict_1) + list(dict_2)))
     for key in sorted(all_keys):

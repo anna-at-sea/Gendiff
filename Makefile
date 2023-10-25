@@ -2,7 +2,7 @@ install:
 	poetry install
 
 diff:
-	poetry run gendiff gendiff/tests/fixtures/file1.json gendiff/tests/fixtures/file2.json
+	poetry run gendiff gendiff/tests/fixtures/json/file1.json gendiff/tests/fixtures/json/file2.json
 
 build:
 	poetry build
