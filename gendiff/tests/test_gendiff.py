@@ -9,9 +9,12 @@ FILE1_YAML = to_dict('gendiff/tests/fixtures/yaml/file1.yaml')
 FILE2_YAML = to_dict('gendiff/tests/fixtures/yaml/file2.yaml')
 EMPTY_YAML = to_dict('gendiff/tests/fixtures/yaml/empty_file.yaml')
 RESULT_FLAT = open('gendiff/tests/fixtures/txt/diff_file1_file2.txt', 'r')
-RESULT_FLAT_SAME_FILE = open('gendiff/tests/fixtures/txt/diff_file1_file1.txt', 'r')
-RESULT_EMPTY_FIRST = open('gendiff/tests/fixtures/txt/diff_empty_file1.txt', 'r')
-RESULT_EMPTY_SECOND = open('gendiff/tests/fixtures/txt/diff_file1_empty.txt', 'r')
+RESULT_FLAT_SAME_FILE = open('gendiff/tests/fixtures/txt/diff_file1_file1.txt',
+                             'r')
+RESULT_EMPTY_FIRST = open('gendiff/tests/fixtures/txt/diff_empty_file1.txt',
+                          'r')
+RESULT_EMPTY_SECOND = open('gendiff/tests/fixtures/txt/diff_file1_empty.txt',
+                           'r')
 RESULT_BOTH_EMPTY = '{\n\n}'
 
 
