@@ -1,18 +1,7 @@
-import json
-import yaml
-
-
 def to_string(data):
     if isinstance(data, bool):
         return str(data).lower()
     return str(data)
-
-
-def to_dict(file):
-    if str(file).endswith('json'):
-        return json.load(open(file))
-    elif str(file).endswith('yaml') or str(file).endswith('yml'):
-        return yaml.safe_load(open(file))
 
 
 def generate_diff(dict_1, dict_2):

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 
-from gendiff import generate_diff, to_dict
+from gendiff import generate_diff
+from gendiff.parse_files import parse
 import argparse
 
 
@@ -14,7 +15,7 @@ args = parser.parse_args()
 
 
 def main():
-    print(generate_diff(to_dict(args.first_file), to_dict(args.second_file)))
+    print(generate_diff(parse(args.first_file), parse(args.second_file)))
     # gendiff/tests/fixtures/file1.json gendiff/tests/fixtures/file2.json
 
 
