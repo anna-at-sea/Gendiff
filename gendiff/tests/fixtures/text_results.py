@@ -17,87 +17,115 @@ STYLISH_RESULT_BOTH_EMPTY = '{\n\n}'
 
 
 DIFF_FLAT = {
-    'host': {
-        'status': 'unchanged',
-        'value': 'hexlet.io'
-    },
-    'timeout': {
-        'status': 'changed',
-        'value1': '50',
-        'value2': '20'
-    },
-    'proxy': {
-        'status': 'deleted',
-        'value': '123.234.53.22'
-    },
-    'follow': {
-        'status': 'deleted',
-        'value': 'false'
-    },
-    'verbose': {
-        'status': 'added',
-        'value': 'true'
-    }
+    'status': 'root',
+    'children': [
+        {
+            'name': 'follow',
+            'status': 'deleted',
+            'value': 'false'
+        },
+        {
+            'name': 'host',
+            'status': 'unchanged',
+            'value': 'hexlet.io'
+        },
+        {
+            'name': 'proxy',
+            'status': 'deleted',
+            'value': '123.234.53.22'
+        },
+        {
+            'name': 'timeout',
+            'status': 'changed',
+            'value1': '50',
+            'value2': '20'
+        },
+        {
+            'name': 'verbose',
+            'status': 'added',
+            'value': 'true'
+        }
+    ]
 }
 
 
 DIFF_FLAT_SAME_FILE = {
-    'host': {
-        'status': 'unchanged',
-        'value': 'hexlet.io'
-    },
-    'timeout': {
-        'status': 'unchanged',
-        'value': '50'
-    },
-    'proxy': {
-        'status': 'unchanged',
-        'value': '123.234.53.22'
-    },
-    'follow': {
-        'status': 'unchanged',
-        'value': 'false'
-    }
+    'status': 'root',
+    'children': [
+        {
+            'name': 'follow',
+            'status': 'unchanged',
+            'value': 'false'
+        },
+        {
+            'name': 'host',
+            'status': 'unchanged',
+            'value': 'hexlet.io'
+        },
+        {
+            'name': 'proxy',
+            'status': 'unchanged',
+            'value': '123.234.53.22'
+        },
+        {
+            'name': 'timeout',
+            'status': 'unchanged',
+            'value': '50'
+        }
+    ]
 }
 
-
 DIFF_EMPTY_FIRST = {
-    'host': {
-        'status': 'added',
-        'value': 'hexlet.io'
-    },
-    'timeout': {
-        'status': 'added',
-        'value': '50'
-    },
-    'proxy': {
-        'status': 'added',
-        'value': '123.234.53.22'
-    },
-    'follow': {
-        'status': 'added',
-        'value': 'false'
-    }
+    'status': 'root',
+    'children': [
+        {
+            'name': 'follow',
+            'status': 'added',
+            'value': 'false'
+        },
+        {
+            'name': 'host',
+            'status': 'added',
+            'value': 'hexlet.io'
+        },
+        {
+            'name': 'proxy',
+            'status': 'added',
+            'value': '123.234.53.22'
+        },
+        {
+            'name': 'timeout',
+            'status': 'added',
+            'value': '50'
+        }
+    ]
 }
 
 
 DIFF_EMPTY_SECOND = {
-    'host': {
-        'status': 'deleted',
-        'value': 'hexlet.io'
-    },
-    'timeout': {
-        'status': 'deleted',
-        'value': '50'
-    },
-    'proxy': {
-        'status': 'deleted',
-        'value': '123.234.53.22'
-    },
-    'follow': {
-        'status': 'deleted',
-        'value': 'false'
-    }
+    'status': 'root',
+    'children': [
+        {
+            'name': 'follow',
+            'status': 'deleted',
+            'value': 'false'
+        },
+        {
+            'name': 'host',
+            'status': 'deleted',
+            'value': 'hexlet.io'
+        },
+        {
+            'name': 'proxy',
+            'status': 'deleted',
+            'value': '123.234.53.22'
+        },
+        {
+            'name': 'timeout',
+            'status': 'deleted',
+            'value': '50'
+        }
+    ]
 }
 
 
@@ -105,84 +133,105 @@ DIFF_BOTH_EMPTY = {}
 
 
 DIFF_NESTED = {
-    'common': {
-        'status': 'unchanged',
-        'children': {
-            'follow': {
-                'status': 'added',
-                'value': 'false'
-            },
-            'setting1': {
-                'status': 'unchanged',
-                'value': 'Value 1'
-            },
-            'setting2': {
-                'status': 'deleted',
-                'value': '200'
-            },
-            'setting3': {
-                'status': 'changed',
-                'value1': 'true',
-                'value2': 'null'
-            },
-            'setting4': {
-                'status': 'added',
-                'value': 'blah blah'
-            },
-            'setting5': {
-                'status': 'added',
-                'value': {'key5': 'value5'}
-            },
-            'setting6': {
-                'status': 'unchanged',
-                'children': {
-                    'doge': {
-                        'status': 'unchanged',
-                        'children': {
-                            'wow': {
-                                'status': 'changed',
-                                'value1': '',
-                                'value2': 'so much'
-                            }
+    'status': 'root',
+    'children': [
+        {
+            'name': 'common',
+            'status': 'unchanged',
+            'children': [
+                {
+                    'name': 'follow',
+                    'status': 'added',
+                    'value': 'false'
+                },
+                {
+                    'name': 'setting1',
+                    'status': 'unchanged',
+                    'value': 'Value 1'
+                },
+                {
+                    'name': 'setting2',
+                    'status': 'deleted',
+                    'value': '200'
+                },
+                {
+                    'name': 'setting3',
+                    'status': 'changed',
+                    'value1': 'true',
+                    'value2': 'null'
+                },
+                {
+                    'name': 'setting4',
+                    'status': 'added',
+                    'value': 'blah blah'
+                },
+                {
+                    'name': 'setting5',
+                    'status': 'added',
+                    'value': {'key5': 'value5'}
+                },
+                {
+                    'name': 'setting6',
+                    'status': 'unchanged',
+                    'children': [
+                        {
+                            'name': 'doge',
+                            'status': 'unchanged',
+                            'children': [
+                                {
+                                    'name': 'wow',
+                                    'status': 'changed',
+                                    'value1': '',
+                                    'value2': 'so much'
+                                }
+                            ]
+                        },
+                        {
+                            'name': 'key',
+                            'status': 'unchanged',
+                            'value': 'value'
+                        },
+                        {
+                            'name': 'ops',
+                            'status': 'added',
+                            'value': 'vops'
                         }
-                    },
-                    'key': {
-                        'status': 'unchanged',
-                        'value': 'value'
-                    },
-                    'ops': {
-                        'status': 'added',
-                        'value': 'vops'
-                    }
+                    ]
                 }
-            }
+            ]
+        },
+        {
+            'name': 'group1',
+            'status': 'unchanged',
+            'children': [
+                {
+                    'name': 'baz',
+                    'status': 'changed',
+                    'value1': 'bas',
+                    'value2': 'bars'
+                },
+                {
+                    'name': 'foo',
+                    'status': 'unchanged',
+                    'value': 'bar'
+                },
+                {
+                    'name': 'nest',
+                    'status': 'changed',
+                    'value1': {'key': 'value'},
+                    'value2': 'str'
+                }
+            ]
+        },
+        {
+            'name': 'group2',
+            'status': 'deleted',
+            'value': {'abc': '12345', 'deep': {'id': '45'}}
+        },
+        {
+            'name': 'group3',
+            'status': 'added',
+            'value': {'deep': {'id': {'number': '45'}}, 'fee': '100500'}
         }
-    },
-    'group1': {
-        'status': 'unchanged',
-        'children': {
-            'baz': {
-                'status': 'changed',
-                'value1': 'bas',
-                'value2': 'bars'
-            },
-            'foo': {
-                'status': 'unchanged',
-                'value': 'bar'
-            },
-            'nest': {
-                'status': 'changed',
-                'value1': {'key': 'value'},
-                'value2': 'str'
-            }
-        }
-    },
-    'group2': {
-        'status': 'deleted',
-        'value': {'abc': '12345', 'deep': {'id': '45'}}
-    },
-    'group3': {
-        'status': 'added',
-        'value': {'deep': {'id': {'number': '45'}}, 'fee': '100500'}
-    }
+    ]
 }
