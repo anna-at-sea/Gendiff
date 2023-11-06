@@ -4,17 +4,17 @@ import pytest
 
 RESULT_FLAT = {
     'host': 'hexlet.io',
-    'timeout': '50',
+    'timeout': 50,
     'proxy': '123.234.53.22',
-    'follow': 'false'
+    'follow': False
 }
 
 
 RESULT_NESTED = {
     'common': {
-        'follow': 'false',
+        'follow': False,
         'setting1': 'Value 1',
-        'setting3': 'null',
+        'setting3': None,
         'setting4': 'blah blah',
         'setting5': {
             'key5': 'value5'
@@ -35,10 +35,10 @@ RESULT_NESTED = {
     'group3': {
         'deep': {
             'id': {
-                'number': '45'
+                'number': 45
             }
         },
-        'fee': '100500'
+        'fee': 100500
     }
 }
 

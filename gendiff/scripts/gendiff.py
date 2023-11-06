@@ -2,6 +2,7 @@
 
 
 from gendiff import generate_diff
+from gendiff.stylish import stylish
 from gendiff.parse_files import parse
 import argparse
 
@@ -15,8 +16,9 @@ args = parser.parse_args()
 
 
 def main():
-    print(generate_diff(parse(args.first_file), parse(args.second_file)))
-    # gendiff/tests/fixtures/file1.json gendiff/tests/fixtures/file2.json
+    print(
+        stylish(generate_diff(parse(args.first_file), parse(args.second_file)))
+    )
 
 
 if __name__ == '__main__':

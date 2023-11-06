@@ -22,7 +22,7 @@ DIFF_FLAT = {
         {
             'name': 'follow',
             'status': 'deleted',
-            'value': 'false'
+            'value': False
         },
         {
             'name': 'host',
@@ -37,13 +37,13 @@ DIFF_FLAT = {
         {
             'name': 'timeout',
             'status': 'changed',
-            'value1': '50',
-            'value2': '20'
+            'value1': 50,
+            'value2': 20
         },
         {
             'name': 'verbose',
             'status': 'added',
-            'value': 'true'
+            'value': True
         }
     ]
 }
@@ -55,7 +55,7 @@ DIFF_FLAT_SAME_FILE = {
         {
             'name': 'follow',
             'status': 'unchanged',
-            'value': 'false'
+            'value': False
         },
         {
             'name': 'host',
@@ -70,7 +70,7 @@ DIFF_FLAT_SAME_FILE = {
         {
             'name': 'timeout',
             'status': 'unchanged',
-            'value': '50'
+            'value': 50
         }
     ]
 }
@@ -81,7 +81,7 @@ DIFF_EMPTY_FIRST = {
         {
             'name': 'follow',
             'status': 'added',
-            'value': 'false'
+            'value': False
         },
         {
             'name': 'host',
@@ -96,7 +96,7 @@ DIFF_EMPTY_FIRST = {
         {
             'name': 'timeout',
             'status': 'added',
-            'value': '50'
+            'value': 50
         }
     ]
 }
@@ -108,7 +108,7 @@ DIFF_EMPTY_SECOND = {
         {
             'name': 'follow',
             'status': 'deleted',
-            'value': 'false'
+            'value': False
         },
         {
             'name': 'host',
@@ -123,7 +123,7 @@ DIFF_EMPTY_SECOND = {
         {
             'name': 'timeout',
             'status': 'deleted',
-            'value': '50'
+            'value': 50
         }
     ]
 }
@@ -142,7 +142,7 @@ DIFF_NESTED = {
                 {
                     'name': 'follow',
                     'status': 'added',
-                    'value': 'false'
+                    'value': False
                 },
                 {
                     'name': 'setting1',
@@ -152,13 +152,13 @@ DIFF_NESTED = {
                 {
                     'name': 'setting2',
                     'status': 'deleted',
-                    'value': '200'
+                    'value': 200
                 },
                 {
                     'name': 'setting3',
                     'status': 'changed',
-                    'value1': 'true',
-                    'value2': 'null'
+                    'value1': True,
+                    'value2': None
                 },
                 {
                     'name': 'setting4',
@@ -226,12 +226,12 @@ DIFF_NESTED = {
         {
             'name': 'group2',
             'status': 'deleted',
-            'value': {'abc': '12345', 'deep': {'id': '45'}}
+            'value': {'abc': 12345, 'deep': {'id': 45}}
         },
         {
             'name': 'group3',
             'status': 'added',
-            'value': {'deep': {'id': {'number': '45'}}, 'fee': '100500'}
+            'value': {'deep': {'id': {'number': 45}}, 'fee': 100500}
         }
     ]
 }

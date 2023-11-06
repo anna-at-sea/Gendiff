@@ -3,26 +3,26 @@ def get_all_keys(*dicts):
 
 
 def _values_are_dicts(value_1, value_2):
-    return (value_1 is not None
-            and value_2 is not None
+    return (value_1 != 'value not found'
+            and value_2 != 'value not found'
             and isinstance(value_1, dict)
             and isinstance(value_2, dict))
 
 
 def _value_changed(value_1, value_2):
-    return (value_1 is not None
-            and value_2 is not None
+    return (value_1 != 'value not found'
+            and value_2 != 'value not found'
             and value_1 != value_2
             and (not isinstance(value_1, dict)
                  or not isinstance(value_2, dict)))
 
 
 def _value_deleted(value_1, value_2):
-    return value_1 and value_2 is None
+    return value_2 == 'value not found'
 
 
 def _value_added(value_1, value_2):
-    return value_1 is None and value_2
+    return value_1 == 'value not found'
 
 
 def generate_description(key, value_1, value_2):
@@ -36,7 +36,7 @@ def generate_description(key, value_1, value_2):
         return {
             'name': key,
             'status': 'unchanged',
-            'children': generate_diff_no_root(value_1, value_2)
+            'children': generate_children(value_1, value_2)
         }
     elif _value_changed(value_1, value_2):
         return {
@@ -59,18 +59,18 @@ def generate_description(key, value_1, value_2):
         }
 
 
-def generate_diff_no_root(dict_1, dict_2):
+def generate_children(dict_1, dict_2):
     result = []
     all_keys = get_all_keys(dict_1, dict_2)
     for key in all_keys:
-        value_1 = dict_1.get(key)
-        value_2 = dict_2.get(key)
+        value_1 = dict_1.get(key, 'value not found')
+        value_2 = dict_2.get(key, 'value not found')
         result.append(generate_description(key, value_1, value_2))
     return result
 
 
 def generate_diff(dict_1, dict_2):
-    result = generate_diff_no_root(dict_1, dict_2)
+    result = generate_children(dict_1, dict_2)
     return {
         'status': 'root',
         'children': result
@@ -82,17 +82,29 @@ def get_children(node):
 
 
 def get_value1(node):
-    value = node.get('value')
-    value1 = node.get('value1')
-    return value if value else value1
+    value = node.get('value', 'value not found')
+    value1 = node.get('value1', 'value not found')
+    return value if value != 'value not found' else value1
 
 
 def get_value2(node):
     return node.get('value2')
 
 
-def get_status(node):
-    return node.get('status')
+def get_status1(node):
+    if node.get('status') == 'unchanged':
+        return ' '
+    elif node.get('status') == 'added':
+        return '+'
+    elif node.get('status') == 'deleted':
+        return '-'
+    elif node.get('status') == 'changed':
+        return '-'
+
+
+def get_status2(node):
+    if node.get('status') == 'changed':
+        return '+'
 
 
 def get_name(node):
