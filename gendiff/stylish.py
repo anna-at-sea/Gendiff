@@ -1,10 +1,26 @@
 from gendiff.gendiff_logic import (
     get_children, get_value1, get_value2,
-    get_status1, get_status2, get_name
+    get_status, get_name
 )
 
 
 INDENT = '    '
+
+
+def stylish_status1(node):
+    if get_status(node) == 'unchanged':
+        return ' '
+    elif get_status(node) == 'added':
+        return '+'
+    elif get_status(node) == 'deleted':
+        return '-'
+    elif get_status(node) == 'changed':
+        return '-'
+
+
+def stylish_status2(node):
+    if get_status(node) == 'changed':
+        return '+'
 
 
 def to_string(value):
@@ -40,8 +56,8 @@ def build_lines(node, depth):
         return (curr_indent) + node
     name = get_name(node)
     children = get_children(node)
-    stat1 = get_status1(node)
-    stat2 = get_status2(node)
+    stat1 = stylish_status1(node)
+    stat2 = stylish_status2(node)
     val1 = get_value1(node)
     val2 = get_value2(node)
     lines = []

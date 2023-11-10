@@ -91,20 +91,8 @@ def get_value2(node):
     return node.get('value2')
 
 
-def get_status1(node):
-    if node.get('status') == 'unchanged':
-        return ' '
-    elif node.get('status') == 'added':
-        return '+'
-    elif node.get('status') == 'deleted':
-        return '-'
-    elif node.get('status') == 'changed':
-        return '-'
-
-
-def get_status2(node):
-    if node.get('status') == 'changed':
-        return '+'
+def get_status(node):
+    return node.get('status')
 
 
 def get_name(node):

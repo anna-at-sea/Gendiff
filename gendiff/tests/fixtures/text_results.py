@@ -7,13 +7,20 @@ with (open('gendiff/tests/fixtures/txt/diff_file1_file2.txt', 'r')
       open('gendiff/tests/fixtures/txt/diff_file1_empty.txt', 'r')
       as diff_file1_empty,
       open('gendiff/tests/fixtures/txt/diff_nested.txt', 'r')
-      as diff_nested):
+      as diff_nested,
+      open('gendiff/tests/fixtures/txt/diff_plain_nested.txt', 'r')
+      as diff_plain_nested,
+      open('gendiff/tests/fixtures/txt/diff_plain_flat.txt', 'r')
+      as diff_plain_flat):
     STYLISH_RESULT_FLAT = diff_file1_file2.read()
     STYLISH_RESULT_FLAT_SAME_FILE = diff_file1_file1.read()
     STYLISH_RESULT_EMPTY_FIRST = diff_empty_file1.read()
     STYLISH_RESULT_EMPTY_SECOND = diff_file1_empty.read()
     STYLISH_RESULT_NESTED = diff_nested.read()
+    PLAIN_RESULT_NESTED = diff_plain_nested.read()
+    PLAIN_RESULT_FLAT = diff_plain_flat.read()
 STYLISH_RESULT_BOTH_EMPTY = '{\n\n}'
+PLAIN_RESULT_BOTH_EMPTY = ''
 
 
 DIFF_FLAT = {
