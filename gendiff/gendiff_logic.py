@@ -69,7 +69,7 @@ def generate_children(dict_1, dict_2):
     return result
 
 
-def generate_diff(dict_1, dict_2):
+def generate_diff_tree(dict_1, dict_2):
     result = generate_children(dict_1, dict_2)
     return {
         'status': 'root',

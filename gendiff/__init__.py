@@ -1,9 +1,14 @@
-from gendiff.gendiff_logic import generate_diff
-from gendiff.stylish import stylish
+from gendiff.gendiff_logic import generate_diff_tree
+from gendiff.formats.stylish import stylish
+from gendiff.formats.plain import plain
 from gendiff.parse_files import parse
 
-__all__ = ('gendiff', 'generate_diff', 'stylish', 'parse')
+__all__ = ('generate_diff', 'generate_diff_tree', 'stylish', 'parse', 'plain')
 
 
-def gendiff(first_file, second_file, format=stylish):
-    return format(generate_diff(parse(first_file), parse(second_file)))
+def generate_diff(first_file, second_file, format_name=stylish):
+    return format_name(
+        generate_diff_tree(
+            parse(first_file), parse(second_file)
+        )
+    )

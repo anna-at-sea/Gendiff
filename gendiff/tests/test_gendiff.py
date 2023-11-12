@@ -1,4 +1,4 @@
-from gendiff import generate_diff
+from gendiff import generate_diff_tree
 from gendiff.tests.fixtures.parsed_files import (
     FILE1_JSON, FILE2_JSON, EMPTY_JSON, FILE1_YAML, FILE2_YAML, EMPTY_YAML,
     NESTED_FILE1_JSON, NESTED_FILE2_JSON,
@@ -21,7 +21,7 @@ import pytest
      ]
 )
 def test_gendiff_flat_json(input_1, input_2, expected):
-    assert generate_diff(input_1, input_2) == expected
+    assert generate_diff_tree(input_1, input_2) == expected
 
 
 @pytest.mark.parametrize(
@@ -34,7 +34,7 @@ def test_gendiff_flat_json(input_1, input_2, expected):
      ]
 )
 def test_gendiff_flat_yaml(input_1, input_2, expected):
-    assert generate_diff(input_1, input_2) == expected
+    assert generate_diff_tree(input_1, input_2) == expected
 
 
 @pytest.mark.parametrize(
@@ -44,4 +44,4 @@ def test_gendiff_flat_yaml(input_1, input_2, expected):
      ]
 )
 def test_gendiff_nested(input_1, input_2, expected):
-    assert generate_diff(input_1, input_2) == expected
+    assert generate_diff_tree(input_1, input_2) == expected

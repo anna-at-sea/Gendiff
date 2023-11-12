@@ -1,4 +1,4 @@
-from gendiff.plain import plain
+from gendiff.formats.plain import plain
 from gendiff.tests.fixtures.text_results import (
     DIFF_FLAT, PLAIN_RESULT_FLAT,
     DIFF_BOTH_EMPTY, PLAIN_RESULT_BOTH_EMPTY,

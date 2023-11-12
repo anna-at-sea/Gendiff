@@ -10,4 +10,11 @@ Compares two configuration files and shows a difference.
 ### Package usage:
 `gendiff [-h] [-f FORMAT] first_file second_file`
 
-[![asciicast](https://asciinema.org/a/BUJ5DodfsD6jFLX0JXVyGANTY.svg)](https://asciinema.org/a/BUJ5DodfsD6jFLX0JXVyGANTY)
+### Comparing flat .json and .yaml files:
+[![asciicast](https://asciinema.org/a/Orqc3OrAvQo3li6KnvTG7NESc.svg)](https://asciinema.org/a/Orqc3OrAvQo3li6KnvTG7NESc)
+
+### Comparing nested files:
+[![asciicast](https://asciinema.org/a/FIaelw9UeDuRuT7wKUGp6EWXu.svg)](https://asciinema.org/a/FIaelw9UeDuRuT7wKUGp6EWXu)
+
+### Using format option:
+[![asciicast](https://asciinema.org/a/afcxi3PRR1KpRglA4GdPxuRK3.svg)](https://asciinema.org/a/afcxi3PRR1KpRglA4GdPxuRK3)

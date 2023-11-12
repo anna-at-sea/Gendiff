@@ -1,4 +1,4 @@
-from gendiff.stylish import stylish
+from gendiff.formats.stylish import stylish
 from gendiff.tests.fixtures.text_results import (
     DIFF_FLAT, DIFF_FLAT_SAME_FILE, DIFF_EMPTY_FIRST,
     DIFF_EMPTY_SECOND, DIFF_BOTH_EMPTY, DIFF_NESTED,

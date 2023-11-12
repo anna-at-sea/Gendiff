@@ -13,8 +13,8 @@ def flatten(list_of_lists):
             return
         for i in item:
             walk(i)
-    walk(list_of_lists)
 
+    walk(list_of_lists)
     return result
 
 
