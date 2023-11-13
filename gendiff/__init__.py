@@ -8,8 +8,11 @@ __all__ = ('generate_diff', 'generate_diff_tree', 'stylish',
            'parse', 'plain', 'json_format')
 
 
-def generate_diff(first_file, second_file, format_name=stylish):
-    return format_name(
+formats = {'stylish': stylish, 'plain': plain, 'json': json_format}
+
+
+def generate_diff(first_file, second_file, format_name='stylish'):
+    return formats[format_name](
         generate_diff_tree(
             parse(first_file), parse(second_file)
         )

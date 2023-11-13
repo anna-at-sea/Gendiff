@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from gendiff import generate_diff, stylish, plain, json_format
+from gendiff import generate_diff
 import argparse
 
 
@@ -14,13 +14,10 @@ parser.add_argument('-f', '--format', help='set format of output',
 args = parser.parse_args()
 
 
-formats = {'stylish': stylish, 'plain': plain, 'json': json_format}
-
-
 def main():
     print(
         generate_diff(
-            args.first_file, args.second_file, formats[args.format]
+            args.first_file, args.second_file, args.format
         )
     )
 
