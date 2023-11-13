@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from gendiff import generate_diff, stylish, plain
+from gendiff import generate_diff, stylish, plain, json_format
 import argparse
 
 
@@ -14,7 +14,7 @@ parser.add_argument('-f', '--format', help='set format of output',
 args = parser.parse_args()
 
 
-formats = {'stylish': stylish, 'plain': plain}
+formats = {'stylish': stylish, 'plain': plain, 'json': json_format}
 
 
 def main():

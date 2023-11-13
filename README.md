@@ -17,4 +17,4 @@ Compares two configuration files and shows a difference.
 [![asciicast](https://asciinema.org/a/FIaelw9UeDuRuT7wKUGp6EWXu.svg)](https://asciinema.org/a/FIaelw9UeDuRuT7wKUGp6EWXu)
 
 ### Using format option:
-[![asciicast](https://asciinema.org/a/afcxi3PRR1KpRglA4GdPxuRK3.svg)](https://asciinema.org/a/afcxi3PRR1KpRglA4GdPxuRK3)
+[![asciicast](https://asciinema.org/a/l7JqRcLe1rJqQAtmoq80BiYzD.svg)](https://asciinema.org/a/l7JqRcLe1rJqQAtmoq80BiYzD)
