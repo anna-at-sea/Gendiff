@@ -57,7 +57,7 @@ DIFF_FLAT = {
         {
             'name': 'timeout',
             'status': 'changed',
-            'value1': 50,
+            'value': 50,
             'value2': 20
         },
         {
@@ -177,7 +177,7 @@ DIFF_NESTED = {
                 {
                     'name': 'setting3',
                     'status': 'changed',
-                    'value1': True,
+                    'value': True,
                     'value2': None
                 },
                 {
@@ -201,7 +201,7 @@ DIFF_NESTED = {
                                 {
                                     'name': 'wow',
                                     'status': 'changed',
-                                    'value1': '',
+                                    'value': '',
                                     'value2': 'so much'
                                 }
                             ]
@@ -227,7 +227,7 @@ DIFF_NESTED = {
                 {
                     'name': 'baz',
                     'status': 'changed',
-                    'value1': 'bas',
+                    'value': 'bas',
                     'value2': 'bars'
                 },
                 {
@@ -238,7 +238,7 @@ DIFF_NESTED = {
                 {
                     'name': 'nest',
                     'status': 'changed',
-                    'value1': {'key': 'value'},
+                    'value': {'key': 'value'},
                     'value2': 'str'
                 }
             ]

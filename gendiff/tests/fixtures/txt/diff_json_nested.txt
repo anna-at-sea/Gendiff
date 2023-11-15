@@ -23,7 +23,7 @@
                 {
                     "name": "setting3",
                     "status": "changed",
-                    "value1": true,
+                    "value": true,
                     "value2": null
                 },
                 {
@@ -49,7 +49,7 @@
                                 {
                                     "name": "wow",
                                     "status": "changed",
-                                    "value1": "",
+                                    "value": "",
                                     "value2": "so much"
                                 }
                             ]
@@ -75,7 +75,7 @@
                 {
                     "name": "baz",
                     "status": "changed",
-                    "value1": "bas",
+                    "value": "bas",
                     "value2": "bars"
                 },
                 {
@@ -86,7 +86,7 @@
                 {
                     "name": "nest",
                     "status": "changed",
-                    "value1": {
+                    "value": {
                         "key": "value"
                     },
                     "value2": "str"

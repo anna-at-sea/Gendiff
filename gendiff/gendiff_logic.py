@@ -1,11 +1,5 @@
-def get_all_keys(*dicts):
-    return sorted(list({y for x in dicts for y in list(x)}))
-
-
 def _values_are_dicts(value_1, value_2):
-    return (value_1 != 'value not found'
-            and value_2 != 'value not found'
-            and isinstance(value_1, dict)
+    return (isinstance(value_1, dict)
             and isinstance(value_2, dict))
 
 
@@ -15,14 +9,6 @@ def _value_changed(value_1, value_2):
             and value_1 != value_2
             and (not isinstance(value_1, dict)
                  or not isinstance(value_2, dict)))
-
-
-def _value_deleted(value_1, value_2):
-    return value_2 == 'value not found'
-
-
-def _value_added(value_1, value_2):
-    return value_1 == 'value not found'
 
 
 def generate_description(key, value_1, value_2):
@@ -42,16 +28,16 @@ def generate_description(key, value_1, value_2):
         return {
             'name': key,
             'status': 'changed',
-            'value1': value_1,
+            'value': value_1,
             'value2': value_2
         }
-    elif _value_deleted(value_1, value_2):
+    elif value_2 == 'value not found':
         return {
             'name': key,
             'status': 'deleted',
             'value': value_1
         }
-    elif _value_added(value_1, value_2):
+    elif value_1 == 'value not found':
         return {
             'name': key,
             'status': 'added',
@@ -61,7 +47,7 @@ def generate_description(key, value_1, value_2):
 
 def generate_children(dict_1, dict_2):
     result = []
-    all_keys = get_all_keys(dict_1, dict_2)
+    all_keys = sorted(list({y for x in (dict_1, dict_2) for y in list(x)}))
     for key in all_keys:
         value_1 = dict_1.get(key, 'value not found')
         value_2 = dict_2.get(key, 'value not found')
@@ -75,25 +61,3 @@ def generate_diff_tree(dict_1, dict_2):
         'status': 'root',
         'children': result
     } if result else {}
-
-
-def get_children(node):
-    return node.get('children')
-
-
-def get_value1(node):
-    value = node.get('value', 'value not found')
-    value1 = node.get('value1', 'value not found')
-    return value if value != 'value not found' else value1
-
-
-def get_value2(node):
-    return node.get('value2')
-
-
-def get_status(node):
-    return node.get('status')
-
-
-def get_name(node):
-    return node.get('name')

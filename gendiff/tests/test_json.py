@@ -14,5 +14,5 @@ import pytest
      (DIFF_BOTH_EMPTY, JSON_RESULT_BOTH_EMPTY)
      ]
 )
-def test_plain(input, expected):
+def test_json(input, expected):
     assert json_format(input) == expected

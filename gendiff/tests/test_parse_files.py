@@ -44,22 +44,22 @@ RESULT_NESTED = {
 
 
 @pytest.mark.parametrize(
-    'input, expected',
-    [('gendiff/tests/fixtures/json/file1.json', RESULT_FLAT),
-     ('gendiff/tests/fixtures/json/empty_file.json', {}),
-     ('gendiff/tests/fixtures/json/nested_file2.json', RESULT_NESTED)
+    'input1, input2, expected',
+    [('gendiff/tests/fixtures/json/file1.json', 'json', RESULT_FLAT),
+     ('gendiff/tests/fixtures/json/empty_file.json', 'json', {}),
+     ('gendiff/tests/fixtures/json/nested_file2.json', 'json', RESULT_NESTED)
      ]
 )
-def test_parse_json(input, expected):
-    assert parse(input) == expected
+def test_parse_json(input1, input2, expected):
+    assert parse(input1, input2) == expected
 
 
 @pytest.mark.parametrize(
-    'input, expected',
-    [('gendiff/tests/fixtures/yaml/file1.yaml', RESULT_FLAT),
-     ('gendiff/tests/fixtures/yaml/empty_file.yaml', {}),
-     ('gendiff/tests/fixtures/yaml/nested_file2.yaml', RESULT_NESTED)
+    'input1, input2, expected',
+    [('gendiff/tests/fixtures/yaml/file1.yaml', 'yaml', RESULT_FLAT),
+     ('gendiff/tests/fixtures/yaml/empty_file.yaml', 'yaml', {}),
+     ('gendiff/tests/fixtures/yaml/nested_file2.yaml', 'yaml', RESULT_NESTED)
      ]
 )
-def test_parse_yaml(input, expected):
-    assert parse(input) == expected
+def test_parse_yaml(input1, input2, expected):
+    assert parse(input1, input2) == expected

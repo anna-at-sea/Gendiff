@@ -1,9 +1,3 @@
-from gendiff.gendiff_logic import (
-    get_children, get_value1, get_value2,
-    get_status, get_name
-)
-
-
 def flatten(list_of_lists):
     result = []
 
@@ -33,11 +27,11 @@ def convert_to_plain(value):
 
 
 def build_lines(node, acc):
-    name = get_name(node)
-    children = get_children(node)
-    stat = get_status(node)
-    val1 = convert_to_plain(get_value1(node))
-    val2 = convert_to_plain(get_value2(node))
+    name = node.get('name')
+    children = node.get('children')
+    stat = node.get('status')
+    val1 = convert_to_plain(node.get('value'))
+    val2 = convert_to_plain(node.get('value2'))
     if children and name:
         acc += f'{name}.'
     if children:
