@@ -1,23 +1,35 @@
 from gendiff import generate_diff_tree
-from gendiff.tests.fixtures.parsed_files import (
-    FILE1_JSON, FILE2_JSON, EMPTY_JSON, FILE1_YAML, FILE2_YAML, EMPTY_YAML,
-    NESTED_FILE1_JSON, NESTED_FILE2_JSON,
-    NESTED_FILE1_YAML, NESTED_FILE2_YAML
-)
-from gendiff.tests.fixtures.text_results import (
-    DIFF_FLAT, DIFF_FLAT_SAME_FILE, DIFF_EMPTY_FIRST,
-    DIFF_EMPTY_SECOND, DIFF_BOTH_EMPTY, DIFF_NESTED
+from gendiff.parse_files import parse
+from gendiff.tests.fixtures.diff_results import (
+    diff_flat, diff_flat_same_file, diff_empty_first,
+    diff_empty_second, diff_both_empty, diff_nested
 )
 import pytest
 
 
+json_path = 'gendiff/tests/fixtures/json/'
+yaml_path = 'gendiff/tests/fixtures/yaml/'
+
+
+file1_json = parse(f'{json_path}file1.json', 'json')
+file2_json = parse(f'{json_path}file2.json', 'json')
+empty_json = parse(f'{json_path}empty_file.json', 'json')
+file1_yaml = parse(f'{yaml_path}file1.yaml', 'yaml')
+file2_yaml = parse(f'{yaml_path}file2.yaml', 'yaml')
+empty_yaml = parse(f'{yaml_path}empty_file.yaml', 'yaml')
+nested_file1_json = parse(f'{json_path}nested_file1.json', 'yaml')
+nested_file2_json = parse(f'{json_path}nested_file2.json', 'yaml')
+nested_file1_yaml = parse(f'{yaml_path}nested_file1.yaml', 'yaml')
+nested_file2_yaml = parse(f'{yaml_path}nested_file2.yaml', 'yaml')
+
+
 @pytest.mark.parametrize(
     'input_1, input_2, expected',
-    [(FILE1_JSON, FILE2_JSON, DIFF_FLAT),
-     (FILE1_JSON, FILE1_JSON, DIFF_FLAT_SAME_FILE),
-     (EMPTY_JSON, FILE1_JSON, DIFF_EMPTY_FIRST),
-     (FILE1_JSON, EMPTY_JSON, DIFF_EMPTY_SECOND),
-     (EMPTY_JSON, EMPTY_JSON, DIFF_BOTH_EMPTY)
+    [(file1_json, file2_json, diff_flat),
+     (file1_json, file1_json, diff_flat_same_file),
+     (empty_json, file1_json, diff_empty_first),
+     (file1_json, empty_json, diff_empty_second),
+     (empty_json, empty_json, diff_both_empty)
      ]
 )
 def test_gendiff_flat_json(input_1, input_2, expected):
@@ -26,11 +38,11 @@ def test_gendiff_flat_json(input_1, input_2, expected):
 
 @pytest.mark.parametrize(
     'input_1, input_2, expected',
-    [(FILE1_YAML, FILE2_YAML, DIFF_FLAT),
-     (FILE1_YAML, FILE1_YAML, DIFF_FLAT_SAME_FILE),
-     (EMPTY_YAML, FILE1_YAML, DIFF_EMPTY_FIRST),
-     (FILE1_YAML, EMPTY_YAML, DIFF_EMPTY_SECOND),
-     (EMPTY_YAML, EMPTY_YAML, DIFF_BOTH_EMPTY)
+    [(file1_yaml, file2_yaml, diff_flat),
+     (file1_yaml, file1_yaml, diff_flat_same_file),
+     (empty_yaml, file1_yaml, diff_empty_first),
+     (file1_yaml, empty_yaml, diff_empty_second),
+     (empty_yaml, empty_yaml, diff_both_empty)
      ]
 )
 def test_gendiff_flat_yaml(input_1, input_2, expected):
@@ -39,8 +51,8 @@ def test_gendiff_flat_yaml(input_1, input_2, expected):
 
 @pytest.mark.parametrize(
     'input_1, input_2, expected',
-    [(NESTED_FILE1_JSON, NESTED_FILE2_JSON, DIFF_NESTED),
-     (NESTED_FILE1_YAML, NESTED_FILE2_YAML, DIFF_NESTED)
+    [(nested_file1_json, nested_file2_json, diff_nested),
+     (nested_file1_yaml, nested_file2_yaml, diff_nested)
      ]
 )
 def test_gendiff_nested(input_1, input_2, expected):

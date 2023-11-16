@@ -1,53 +1,19 @@
 from gendiff.parse_files import parse
+from gendiff.tests.fixtures.parse_results import (
+    parse_result_flat, parse_result_nested
+)
 import pytest
 
 
-RESULT_FLAT = {
-    'host': 'hexlet.io',
-    'timeout': 50,
-    'proxy': '123.234.53.22',
-    'follow': False
-}
-
-
-RESULT_NESTED = {
-    'common': {
-        'follow': False,
-        'setting1': 'Value 1',
-        'setting3': None,
-        'setting4': 'blah blah',
-        'setting5': {
-            'key5': 'value5'
-        },
-        'setting6': {
-            'key': 'value',
-            'ops': 'vops',
-            'doge': {
-                'wow': 'so much'
-            }
-        }
-    },
-    'group1': {
-        'foo': 'bar',
-        'baz': 'bars',
-        'nest': 'str'
-    },
-    'group3': {
-        'deep': {
-            'id': {
-                'number': 45
-            }
-        },
-        'fee': 100500
-    }
-}
+json_path = 'gendiff/tests/fixtures/json/'
+yaml_path = 'gendiff/tests/fixtures/yaml/'
 
 
 @pytest.mark.parametrize(
     'input1, input2, expected',
-    [('gendiff/tests/fixtures/json/file1.json', 'json', RESULT_FLAT),
-     ('gendiff/tests/fixtures/json/empty_file.json', 'json', {}),
-     ('gendiff/tests/fixtures/json/nested_file2.json', 'json', RESULT_NESTED)
+    [(f'{json_path}file1.json', 'json', parse_result_flat),
+     (f'{json_path}empty_file.json', 'json', {}),
+     (f'{json_path}nested_file2.json', 'json', parse_result_nested)
      ]
 )
 def test_parse_json(input1, input2, expected):
@@ -56,9 +22,9 @@ def test_parse_json(input1, input2, expected):
 
 @pytest.mark.parametrize(
     'input1, input2, expected',
-    [('gendiff/tests/fixtures/yaml/file1.yaml', 'yaml', RESULT_FLAT),
-     ('gendiff/tests/fixtures/yaml/empty_file.yaml', 'yaml', {}),
-     ('gendiff/tests/fixtures/yaml/nested_file2.yaml', 'yaml', RESULT_NESTED)
+    [(f'{yaml_path}file1.yaml', 'yaml', parse_result_flat),
+     (f'{yaml_path}empty_file.yaml', 'yaml', {}),
+     (f'{yaml_path}nested_file2.yaml', 'yaml', parse_result_nested)
      ]
 )
 def test_parse_yaml(input1, input2, expected):
