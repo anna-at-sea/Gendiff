@@ -2,24 +2,11 @@
 
 
 from gendiff import generate_diff
-import argparse
-
-
-parser = argparse.ArgumentParser(description='Compares \
-two configuration files and shows a difference.')
-parser.add_argument('first_file', type=str)
-parser.add_argument('second_file', type=str)
-parser.add_argument('-f', '--format', help='set format of output',
-                    default='stylish')
-args = parser.parse_args()
+from gendiff.argparse import first_file, second_file, file_format
 
 
 def main():
-    print(
-        generate_diff(
-            args.first_file, args.second_file, args.format
-        )
-    )
+    print(generate_diff(first_file, second_file, file_format))
 
 
 if __name__ == '__main__':
