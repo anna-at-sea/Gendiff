@@ -30,8 +30,8 @@ def build_lines(node, acc):
     name = node.get('name')
     children = node.get('children')
     stat = node.get('status')
-    val1 = convert_to_plain(node.get('value'))
-    val2 = convert_to_plain(node.get('value2'))
+    val1 = convert_to_plain(node.get('values')[0])
+    val2 = convert_to_plain(node.get('values')[1])
     if children and name:
         acc += f'{name}.'
     if children:

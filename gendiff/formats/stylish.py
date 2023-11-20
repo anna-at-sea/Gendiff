@@ -53,8 +53,8 @@ def build_lines(node, depth):
     children = node.get('children')
     stat1 = stylish_status1(node)
     stat2 = stylish_status2(node)
-    val1 = node.get('value')
-    val2 = node.get('value2')
+    val1 = node.get('values')[0]
+    val2 = node.get('values')[1]
     lines = []
     if not children:
         lines.append(

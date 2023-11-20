@@ -1,31 +1,54 @@
 {
     "status": "root",
+    "values": [
+        null,
+        null
+    ],
     "children": [
         {
             "name": "follow",
             "status": "deleted",
-            "value": false
+            "values": [
+                false,
+                "value not found"
+            ],
+            "children": []
         },
         {
             "name": "host",
             "status": "unchanged",
-            "value": "hexlet.io"
+            "values": [
+                "hexlet.io",
+                "hexlet.io"
+            ],
+            "children": []
         },
         {
             "name": "proxy",
             "status": "deleted",
-            "value": "123.234.53.22"
+            "values": [
+                "123.234.53.22",
+                "value not found"
+            ],
+            "children": []
         },
         {
             "name": "timeout",
             "status": "changed",
-            "value": 50,
-            "value2": 20
+            "values": [
+                50,
+                20
+            ],
+            "children": []
         },
         {
             "name": "verbose",
             "status": "added",
-            "value": true
+            "values": [
+                true,
+                true
+            ],
+            "children": []
         }
     ]
 }

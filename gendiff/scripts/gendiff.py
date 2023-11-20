@@ -2,11 +2,11 @@
 
 
 from gendiff import generate_diff
-from gendiff.argparse import first_file, second_file, file_format
+from gendiff.parse_args import get_args
 
 
 def main():
-    print(generate_diff(first_file, second_file, file_format))
+    print(generate_diff(*get_args()))
 
 
 if __name__ == '__main__':
