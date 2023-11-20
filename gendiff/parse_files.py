@@ -2,20 +2,17 @@ import json
 import yaml
 
 
-def get_content_json(file):
-    with open(file) as open_file:
-        result = json.load(open_file)
-    return result
+def get_content(file):
+    with open(file, 'r') as open_file:
+        return open_file.read()
 
 
-def get_content_yaml(file):
-    with open(file) as open_file:
-        result = yaml.safe_load(open_file)
-    return result
+def get_format(file):
+    return str(file).split('.')[-1]
 
 
 def parse(content, format):
     if format == 'json':
-        return get_content_json(content)
+        return json.loads(content)
     elif format == 'yaml' or format == 'yml':
-        return get_content_yaml(content)
+        return yaml.safe_load(content)
