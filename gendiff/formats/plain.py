@@ -32,7 +32,7 @@ def build_lines(node, acc):
     stat = node.get('status')
     val1 = convert_to_plain(node.get('values')[0])
     val2 = convert_to_plain(node.get('values')[1])
-    if children and name:
+    if stat == 'nested':
         acc += f'{name}.'
     if children:
         return list(map(lambda child: build_lines(child, acc), children))
@@ -40,7 +40,7 @@ def build_lines(node, acc):
         return f"Property '{acc + name}' was added with value: {val1}"
     elif stat == 'deleted':
         return f"Property '{acc + name}' was removed"
-    elif stat == 'changed':
+    elif stat == 'updated':
         return f"Property '{acc + name}' was updated. From {val1} to {val2}"
 
 

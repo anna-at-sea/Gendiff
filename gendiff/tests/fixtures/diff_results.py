@@ -1,5 +1,4 @@
 diff_flat = {
-    'status': 'root',
     'values': (None, None),
     'children': [
         {
@@ -10,7 +9,7 @@ diff_flat = {
         },
         {
             'name': 'host',
-            'status': 'unchanged',
+            'status': None,
             'values': ('hexlet.io', 'hexlet.io'),
             'children': []
         },
@@ -22,7 +21,7 @@ diff_flat = {
         },
         {
             'name': 'timeout',
-            'status': 'changed',
+            'status': 'updated',
             'values': (50, 20),
             'children': []
         },
@@ -37,30 +36,29 @@ diff_flat = {
 
 
 diff_flat_same_file = {
-    'status': 'root',
     'values': (None, None),
     'children': [
         {
             'name': 'follow',
-            'status': 'unchanged',
+            'status': None,
             'values': (False, False),
             'children': []
         },
         {
             'name': 'host',
-            'status': 'unchanged',
+            'status': None,
             'values': ('hexlet.io', 'hexlet.io'),
             'children': []
         },
         {
             'name': 'proxy',
-            'status': 'unchanged',
+            'status': None,
             'values': ('123.234.53.22', '123.234.53.22'),
             'children': []
         },
         {
             'name': 'timeout',
-            'status': 'unchanged',
+            'status': None,
             'values': (50, 50),
             'children': []
         }
@@ -69,7 +67,6 @@ diff_flat_same_file = {
 
 
 diff_empty_first = {
-    'status': 'root',
     'values': (None, None),
     'children': [
         {
@@ -101,7 +98,6 @@ diff_empty_first = {
 
 
 diff_empty_second = {
-    'status': 'root',
     'values': (None, None),
     'children': [
         {
@@ -136,12 +132,11 @@ diff_both_empty = {}
 
 
 diff_nested = {
-    'status': 'root',
     'values': (None, None),
     'children': [
         {
             'name': 'common',
-            'status': 'unchanged',
+            'status': 'nested',
             'values': ('values are dicts', 'values are dicts'),
             'children': [
                 {
@@ -152,7 +147,7 @@ diff_nested = {
                 },
                 {
                     'name': 'setting1',
-                    'status': 'unchanged',
+                    'status': None,
                     'values': ('Value 1', 'Value 1'),
                     'children': []
                 },
@@ -164,7 +159,7 @@ diff_nested = {
                 },
                 {
                     'name': 'setting3',
-                    'status': 'changed',
+                    'status': 'updated',
                     'values': (True, None),
                     'children': []
                 },
@@ -182,17 +177,17 @@ diff_nested = {
                 },
                 {
                     'name': 'setting6',
-                    'status': 'unchanged',
+                    'status': 'nested',
                     'values': ('values are dicts', 'values are dicts'),
                     'children': [
                         {
                             'name': 'doge',
-                            'status': 'unchanged',
+                            'status': 'nested',
                             'values': ('values are dicts', 'values are dicts'),
                             'children': [
                                 {
                                     'name': 'wow',
-                                    'status': 'changed',
+                                    'status': 'updated',
                                     'values': ('', 'so much'),
                                     'children': []
                                 }
@@ -200,7 +195,7 @@ diff_nested = {
                         },
                         {
                             'name': 'key',
-                            'status': 'unchanged',
+                            'status': None,
                             'values': ('value', 'value'),
                             'children': []
                         },
@@ -216,24 +211,24 @@ diff_nested = {
         },
         {
             'name': 'group1',
-            'status': 'unchanged',
+            'status': 'nested',
             'values': ('values are dicts', 'values are dicts'),
             'children': [
                 {
                     'name': 'baz',
-                    'status': 'changed',
+                    'status': 'updated',
                     'values': ('bas', 'bars'),
                     'children': []
                 },
                 {
                     'name': 'foo',
-                    'status': 'unchanged',
+                    'status': None,
                     'values': ('bar', 'bar'),
                     'children': []
                 },
                 {
                     'name': 'nest',
-                    'status': 'changed',
+                    'status': 'updated',
                     'values': ({'key': 'value'}, 'str'),
                     'children': []
                 }

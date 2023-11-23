@@ -3,18 +3,18 @@ INDENT = '    '
 
 def stylish_status1(node):
     status = node.get('status')
-    if status == 'unchanged':
+    if status in (None, 'nested'):
         return ' '
     elif status == 'added':
         return '+'
     elif status == 'deleted':
         return '-'
-    elif status == 'changed':
+    elif status == 'updated':
         return '-'
 
 
 def stylish_status2(node):
-    if node.get('status') == 'changed':
+    if node.get('status') == 'updated':
         return '+'
 
 
