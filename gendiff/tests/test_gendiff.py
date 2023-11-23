@@ -1,5 +1,5 @@
 from gendiff import generate_diff_tree
-from gendiff.parse_files import parse, get_content, get_format
+from gendiff.parse_files import get_content
 from gendiff.tests.fixtures.diff_results import (
     diff_flat, diff_flat_same_file, diff_empty_first,
     diff_empty_second, diff_both_empty, diff_nested
@@ -8,15 +8,10 @@ import pytest
 
 
 def get_input(file_name):
-    file_format = get_format(file_name)
-    if file_format == 'json':
-        return parse(
-            get_content(f'gendiff/tests/fixtures/json/{file_name}'), 'json'
-        )
-    elif file_format in ('yaml', 'yml'):
-        return parse(
-            get_content(f'gendiff/tests/fixtures/yaml/{file_name}'), 'yaml'
-        )
+    if file_name.endswith('json'):
+        return get_content(f'gendiff/tests/fixtures/json/{file_name}')
+    elif file_name.endswith('yaml') or file_name.endswith('yml'):
+        return get_content(f'gendiff/tests/fixtures/yaml/{file_name}')
 
 
 @pytest.mark.parametrize(

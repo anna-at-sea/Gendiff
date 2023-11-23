@@ -3,12 +3,9 @@ import yaml
 
 
 def get_content(file):
+    file_format = str(file).split('.')[-1]
     with open(file, 'r') as open_file:
-        return open_file.read()
-
-
-def get_format(file):
-    return str(file).split('.')[-1]
+        return parse(open_file.read(), file_format)
 
 
 def parse(content, format):
@@ -16,3 +13,5 @@ def parse(content, format):
         return json.loads(content)
     elif format == 'yaml' or format == 'yml':
         return yaml.safe_load(content)
+    else:
+        raise ValueError(f'\'{format}\' format is not supported')
