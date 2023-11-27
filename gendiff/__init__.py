@@ -1,18 +1,18 @@
 from gendiff.gendiff_logic import generate_diff_tree
-from gendiff.formats.stylish import stylish
-from gendiff.formats.plain import plain
-from gendiff.formats.json import json_format
-from gendiff.parse_files import get_content
+from gendiff.formatters.stylish import stylish
+from gendiff.formatters.plain import plain
+from gendiff.formatters.json_formatter import json_formatter
+from gendiff.load_data import get_content
 
 __all__ = ('generate_diff', 'generate_diff_tree', 'stylish',
-           'get_content', 'plain', 'json_format')
+           'get_content', 'plain', 'json_formatter')
 
 
-formats = {'stylish': stylish, 'plain': plain, 'json': json_format}
+formatters = {'stylish': stylish, 'plain': plain, 'json': json_formatter}
 
 
-def generate_diff(first_file, second_file, format_name='stylish'):
-    return formats[format_name](
+def generate_diff(first_file, second_file, formatter='stylish'):
+    return formatters[formatter](
         generate_diff_tree(
             get_content(first_file),
             get_content(second_file)

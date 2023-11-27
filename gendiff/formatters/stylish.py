@@ -64,7 +64,7 @@ def build_lines(node, depth):
         lines.append(
             f'{curr_indent}  {stat2} {name}: {stylish_value(val2, depth + 2)}'
         )
-    if children and name:
+    if node.get('status') == 'nested':
         lines.append(f'{curr_indent}    {name}: ' + '{')
     if children:
         lines.extend(

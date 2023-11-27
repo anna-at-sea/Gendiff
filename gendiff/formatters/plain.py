@@ -32,7 +32,7 @@ def build_lines(node, acc):
     stat = node.get('status')
     val1 = convert_to_plain(node.get('values')[0])
     val2 = convert_to_plain(node.get('values')[1])
-    if stat == 'nested':
+    if stat == 'nested' and name != 'root':
         acc += f'{name}.'
     if children:
         return list(map(lambda child: build_lines(child, acc), children))
