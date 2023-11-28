@@ -1,43 +1,42 @@
 INDENT = '    '
+ADDED = '+'
+DELETED = '-'
+UNCHANGED = ' '
 
 
 def stylish_status1(node):
     status = node.get('status')
     if status in (None, 'nested'):
-        return ' '
+        return UNCHANGED
     elif status == 'added':
-        return '+'
+        return ADDED
     elif status == 'deleted':
-        return '-'
+        return DELETED
     elif status == 'updated':
-        return '-'
+        return DELETED
 
 
 def stylish_status2(node):
     if node.get('status') == 'updated':
-        return '+'
+        return ADDED
 
 
-def to_string(value):
-    if isinstance(value, bool):
-        new_value = str(value).lower()
-    elif value is None:
-        new_value = 'null'
-    else:
-        new_value = str(value)
-    return new_value
-
-
-def stylish_value(value, stylish_depth):
+def to_str(value, stylish_depth):
 
     def walk(node, depth):
-        if not isinstance(node, dict):
-            return to_string(node)
+        if isinstance(node, bool):
+            return str(node).lower()
+        elif node is None:
+            return 'null'
+        elif node == 'values are dicts':
+            return '{'
+        elif not isinstance(node, dict):
+            return str(node)
         total_depth = depth + stylish_depth
         lines = []
         for key, val in node.items():
             lines.append(
-                f'{INDENT * (total_depth)}{key}: {walk(val, depth + 1)}'
+                f'{INDENT * total_depth}{key}: {walk(val, depth + 1)}'
             )
         result = ['{'] + lines + [f'{INDENT * (total_depth - 1)}' + '}']
         return '\n'.join(result)
@@ -45,36 +44,32 @@ def stylish_value(value, stylish_depth):
     return walk(value, 0)
 
 
-def build_lines(node, depth):
+def stylish(node, depth=-1):
+    if not node:
+        return '{\n\n}'
     curr_indent = INDENT * depth
     if node == '}':
-        return (curr_indent) + node
+        return curr_indent + node
     name = node.get('name')
     children = node.get('children')
     stat1 = stylish_status1(node)
-    stat2 = stylish_status2(node)
     val1 = node.get('values')[0]
-    val2 = node.get('values')[1]
     lines = []
-    if not children:
+    if depth == -1:
+        lines.append('{')
+    elif depth > -1:
         lines.append(
-            f'{curr_indent}  {stat1} {name}: {stylish_value(val1, depth + 2)}'
+            f'{curr_indent}  {stat1} {name}: {to_str(val1, depth + 2)}'
         )
-    if not children and stat2:
+    if node.get('status') == 'updated':
+        stat2 = stylish_status2(node)
+        val2 = node.get('values')[1]
         lines.append(
-            f'{curr_indent}  {stat2} {name}: {stylish_value(val2, depth + 2)}'
+            f'{curr_indent}  {stat2} {name}: {to_str(val2, depth + 2)}'
         )
-    if node.get('status') == 'nested':
-        lines.append(f'{curr_indent}    {name}: ' + '{')
     if children:
         lines.extend(
-            list(map(lambda child: build_lines(child, depth + 1),
+            list(map(lambda child: stylish(child, depth + 1),
                  children + ['}']))
         )
     return '\n'.join(lines)
-
-
-def stylish(tree):
-    if not tree:
-        return '{\n\n}'
-    return '{\n' + build_lines(tree, -1)

@@ -12,7 +12,7 @@ def flatten(list_of_lists):
     return result
 
 
-def convert_to_plain(value):
+def to_str(value):
     if isinstance(value, bool):
         new_value = str(value).lower()
     elif value is None:
@@ -26,26 +26,22 @@ def convert_to_plain(value):
     return new_value
 
 
-def build_lines(node, acc):
-    name = node.get('name')
+def plain(node, acc=''):
+    if not node:
+        return ''
+    name = node.get('name', '')
     children = node.get('children')
     stat = node.get('status')
-    val1 = convert_to_plain(node.get('values')[0])
-    val2 = convert_to_plain(node.get('values')[1])
-    if stat == 'nested' and name != 'root':
+    val1 = to_str(node.get('values')[0])
+    val2 = to_str(node.get('values')[1])
+    if stat == 'nested':
         acc += f'{name}.'
     if children:
-        return list(map(lambda child: build_lines(child, acc), children))
+        child_list = list(map(lambda child: plain(child, acc), children))
+        return '\n'.join(filter(lambda x: x is not None, flatten(child_list)))
     elif stat == 'added':
         return f"Property '{acc + name}' was added with value: {val1}"
     elif stat == 'deleted':
         return f"Property '{acc + name}' was removed"
     elif stat == 'updated':
         return f"Property '{acc + name}' was updated. From {val1} to {val2}"
-
-
-def plain(tree):
-    if not tree:
-        return ''
-    flat_lines = flatten(build_lines(tree, ''))
-    return '\n'.join(filter(lambda x: x is not None, flat_lines))

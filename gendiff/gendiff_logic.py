@@ -1,4 +1,9 @@
-def generate_children(dict_1, dict_2):
+def generate_diff_tree(dict_1, dict_2, depth=0):
+    if depth == 0:
+        return {
+            'values': (None, None),
+            'children': generate_diff_tree(dict_1, dict_2, 1)
+        } if dict_1 or dict_2 else {}
     result = []
     all_keys = sorted(dict_1.keys() | dict_2.keys())
     deleted_keys = dict_1.keys() - dict_2.keys()
@@ -24,14 +29,6 @@ def generate_children(dict_1, dict_2):
             'name': key,
             'status': status,
             'values': (value, value_2),
-            'children': generate_children(child_1, child_2)
+            'children': generate_diff_tree(child_1, child_2, 1)
         })
     return result
-
-
-def generate_diff_tree(dict_1, dict_2):
-    root_children = generate_children(dict_1, dict_2)
-    return {
-        'values': (None, None),
-        'children': root_children
-    } if root_children else {}
