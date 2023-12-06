@@ -3,54 +3,42 @@ import pytest
 from os.path import join
 
 
-TXT_PATH = 'gendiff/tests/fixtures/txt/'
-JSON_PATH = 'gendiff/tests/fixtures/json/'
-YAML_PATH = 'gendiff/tests/fixtures/yaml/'
+FIXTURE_PATH = 'gendiff/tests/fixtures/'
 
 
 def format_result(file_name):
-    if file_name == '{\n\n}':
-        return '{\n\n}'
-    elif file_name == '':
-        return ''
     with open(
-        join(TXT_PATH, f'{file_name}.txt'), 'r'
+        join(FIXTURE_PATH, f'{file_name}.txt'), 'r'
     ) as open_path:
         return open_path.read()
 
 
-tested_cases = [
-    ('file1', 'file2', 'stylish', 'diff_file1_file2'),
-    ('file1', 'file1', 'stylish', 'diff_file1_file1'),
-    ('empty', 'file1', 'stylish', 'diff_empty_file1'),
-    ('file1', 'empty', 'stylish', 'diff_file1_empty'),
-    ('empty', 'empty', 'stylish', '{\n\n}'),
-    ('nested1', 'nested2', 'stylish', 'diff_nested'),
-    ('file1', 'file2', 'plain', 'diff_plain_flat'),
-    ('empty', 'empty', 'plain', ''),
-    ('nested1', 'nested2', 'plain', 'diff_plain_nested')
-]
-
-
 @pytest.mark.parametrize(
     'input1, input2, format, expected',
-    tested_cases
+    [
+        ('file1.json', 'file2.json', 'stylish', 'diff_file1_file2'),
+        ('file1.yaml', 'file2.yaml', 'stylish', 'diff_file1_file2'),
+        ('file1.json', 'file1.json', 'stylish', 'diff_file1_file1'),
+        ('file1.yaml', 'file1.yaml', 'stylish', 'diff_file1_file1'),
+        ('empty.json', 'file1.json', 'stylish', 'diff_empty_file1'),
+        ('empty.yaml', 'file1.yaml', 'stylish', 'diff_empty_file1'),
+        ('file1.json', 'empty.json', 'stylish', 'diff_file1_empty'),
+        ('file1.yaml', 'empty.yaml', 'stylish', 'diff_file1_empty'),
+        ('empty.json', 'empty.json', 'stylish', 'diff_empty_stylish'),
+        ('empty.yaml', 'empty.yaml', 'stylish', 'diff_empty_stylish'),
+        ('nested1.json', 'nested2.json', 'stylish', 'diff_nested'),
+        ('nested1.yaml', 'nested2.yaml', 'stylish', 'diff_nested'),
+        ('file1.json', 'file2.json', 'plain', 'diff_plain_flat'),
+        ('file1.yaml', 'file2.yaml', 'plain', 'diff_plain_flat'),
+        ('empty.json', 'empty.json', 'plain', 'diff_empty_plain'),
+        ('empty.yaml', 'empty.yaml', 'plain', 'diff_empty_plain'),
+        ('nested1.json', 'nested2.json', 'plain', 'diff_plain_nested'),
+        ('nested1.yaml', 'nested2.yaml', 'plain', 'diff_plain_nested')
+    ]
 )
-def test_generate_diff_json(input1, input2, format, expected):
+def test_generate_diff(input1, input2, format, expected):
     assert generate_diff(
-        join(JSON_PATH, input1 + '.json'),
-        join(JSON_PATH, input2 + '.json'),
-        format
-    ) == format_result(expected)
-
-
-@pytest.mark.parametrize(
-    'input1, input2, format, expected',
-    tested_cases
-)
-def test_generate_diff_yaml(input1, input2, format, expected):
-    assert generate_diff(
-        join(YAML_PATH, input1 + '.yaml'),
-        join(YAML_PATH, input2 + '.yaml'),
+        join(FIXTURE_PATH, input1),
+        join(FIXTURE_PATH, input2),
         format
     ) == format_result(expected)
