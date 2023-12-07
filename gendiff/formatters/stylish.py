@@ -1,24 +1,13 @@
 INDENT = '    '
-ADDED = '+'
-DELETED = '-'
-UNCHANGED = ' '
 
 
-def stylish_status1(node):
-    status = node.get('status')
-    if status in (None, 'nested'):
-        return UNCHANGED
-    elif status == 'added':
-        return ADDED
-    elif status == 'deleted':
-        return DELETED
-    elif status == 'updated':
-        return DELETED
-
-
-def stylish_status2(node):
-    if node.get('status') == 'updated':
-        return ADDED
+STATUS_PREFIXES = {
+    'added': '+',
+    'deleted': '-',
+    'updated': '-',
+    'nested': ' ',
+    None: ' '
+}
 
 
 def to_str(value, stylish_depth):
@@ -52,20 +41,22 @@ def stylish(node, depth=-1):
         return curr_indent + node
     name = node.get('name')
     children = node.get('children')
-    stat1 = stylish_status1(node)
-    val1 = node.get('values')[0]
+    stat = STATUS_PREFIXES[node.get('status')]
+    val = node.get('old_value')
+    new_val = node.get('new_value')
     lines = []
     if depth == -1:
         lines.append('{')
-    elif depth > -1:
+    elif node.get('status') == 'added':
+        val = new_val
+    if depth > -1:
         lines.append(
-            f'{curr_indent}  {stat1} {name}: {to_str(val1, depth + 2)}'
+            f'{curr_indent}  {stat} {name}: {to_str(val, depth + 2)}'
         )
     if node.get('status') == 'updated':
-        stat2 = stylish_status2(node)
-        val2 = node.get('values')[1]
+        new_stat = STATUS_PREFIXES['added']
         lines.append(
-            f'{curr_indent}  {stat2} {name}: {to_str(val2, depth + 2)}'
+            f'{curr_indent}  {new_stat} {name}: {to_str(new_val, depth + 2)}'
         )
     if children:
         lines.extend(

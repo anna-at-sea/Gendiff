@@ -32,16 +32,18 @@ def plain(node, acc=''):
     name = node.get('name', '')
     children = node.get('children')
     stat = node.get('status')
-    val1 = to_str(node.get('values')[0])
-    val2 = to_str(node.get('values')[1])
+    old_val = to_str(node.get('old_value'))
+    new_val = to_str(node.get('new_value'))
     if stat == 'nested':
         acc += f'{name}.'
     if children:
-        child_list = list(map(lambda child: plain(child, acc), children))
-        return '\n'.join(filter(lambda x: x is not None, flatten(child_list)))
+        return '\n'.join(filter(lambda x: x is not None, flatten(
+            list(map(lambda child: plain(child, acc), children))
+        )))
     elif stat == 'added':
-        return f"Property '{acc + name}' was added with value: {val1}"
+        return f"Property '{acc + name}' was added with value: {new_val}"
     elif stat == 'deleted':
         return f"Property '{acc + name}' was removed"
     elif stat == 'updated':
-        return f"Property '{acc + name}' was updated. From {val1} to {val2}"
+        return f"Property '{acc + name}' was updated. \
+From {old_val} to {new_val}"

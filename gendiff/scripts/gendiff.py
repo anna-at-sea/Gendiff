@@ -5,11 +5,14 @@ from gendiff import generate_diff
 from gendiff.cli import get_args
 
 
+args = get_args()
+
+
 def main():
     print(generate_diff(
-        get_args().first_file,
-        get_args().second_file,
-        get_args().format
+        args.first_file,
+        args.second_file,
+        args.format
     ))
 
 
