@@ -7,6 +7,13 @@ Compares two configuration files and shows a difference.
 [![Maintainability](https://api.codeclimate.com/v1/badges/10688991c9898007ecc8/maintainability)](https://codeclimate.com/github/anna-at-sea/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/10688991c9898007ecc8/test_coverage)](https://codeclimate.com/github/anna-at-sea/python-project-50/test_coverage)
 
+### System requirements:
+* python = "^3.10"
+* poetry = "^1.4.2"
+
+### Installation:
+`make install build package-install`
+
 ### Package usage:
 `gendiff [-h] [-f FORMAT] first_file second_file`
 

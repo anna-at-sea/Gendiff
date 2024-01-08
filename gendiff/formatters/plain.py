@@ -1,13 +1,3 @@
-def flatten(list_of_lists):
-    result = []
-    for item in list_of_lists:
-        item = item if isinstance(item, list) else [item]
-        result.extend(item)
-    if any(isinstance(i, list) for i in result):
-        return flatten(result)
-    return result
-
-
 def to_str(value):
     if isinstance(value, bool):
         return str(value).lower()
@@ -16,12 +6,12 @@ def to_str(value):
     elif isinstance(value, dict):
         return '[complex value]'
     elif isinstance(value, str):
-        return "'" + value + "'"
+        return f"'{value}'"
     else:
         return value
 
 
-def plain(node, acc=''):
+def plain(node, path=''):
     if not node:
         return ''
     name = node.get('name', '')
@@ -30,14 +20,14 @@ def plain(node, acc=''):
     old_value = to_str(node.get('old_value'))
     new_value = to_str(node.get('new_value'))
     if status == 'nested':
-        return '\n'.join(filter(lambda x: x is not None, flatten(
-            list(map(lambda child: plain(child, acc + f'{name}.'), children))
-        )))
-    full_name = (acc + name).strip('.')
+        return '\n'.join(filter(lambda x: x is not None, list(map(
+            lambda child: plain(child, path + f'{name}.'), children
+        ))))
+    full_path = (path + name).strip('.')
     if status == 'added':
-        return f"Property '{full_name}' was added with value: {new_value}"
+        return f"Property '{full_path}' was added with value: {new_value}"
     if status == 'deleted':
-        return f"Property '{full_name}' was removed"
+        return f"Property '{full_path}' was removed"
     if status == 'updated':
-        return f"Property '{full_name}' was updated. \
+        return f"Property '{full_path}' was updated. \
 From {old_value} to {new_value}"
