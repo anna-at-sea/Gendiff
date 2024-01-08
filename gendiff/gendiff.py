@@ -4,6 +4,6 @@ from gendiff.formatters.apply_formatter import apply_formatter
 
 
 def generate_diff(first_file, second_file, formatter='stylish'):
-    return apply_formatter(formatter)(generate_diff_tree(
+    return apply_formatter(formatter, generate_diff_tree(
         get_content(first_file), get_content(second_file)
     ))

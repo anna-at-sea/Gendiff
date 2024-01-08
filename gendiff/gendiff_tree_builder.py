@@ -1,6 +1,7 @@
 def generate_diff_tree(dict_1, dict_2, depth=0):
     if depth == 0:
         return {
+            'status': 'nested',
             'children': generate_diff_tree(dict_1, dict_2, 1)
         } if dict_1 or dict_2 else {}
     result = []
@@ -11,7 +12,7 @@ def generate_diff_tree(dict_1, dict_2, depth=0):
         old_value = dict_1.get(key, 'value not found')
         new_value = dict_2.get(key, 'value not found')
         children = ({}, {})
-        status = None
+        status = 'unchanged'
         if (isinstance(old_value, dict) and isinstance(new_value, dict)):
             status = 'nested'
             children = old_value, new_value
